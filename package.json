@@ -1,6 +1,6 @@
 {
   "name": "dsh-obsidian-reference-adapter",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Obsidian note reference adapter for dsh-annotation-core.",
   "type": "module",
   "license": "MIT",
@@ -51,7 +51,7 @@
       "inject": ["dsh-annotation-core", "dsh-obsidian-bridge-lifecycle"]
     }
   },
-  "dshKnowledge": { "annotationProtocolVersion": 2, "bridgeLifecycleProtocolVersion": 1 },
+  "dshKnowledge": { "annotationProtocolVersion": 2, "bridgeLifecycleProtocolVersion": 2 },
   "packageManager": "pnpm@11.19.0",
   "publishConfig": { "access": "public" },
   "repository": {
