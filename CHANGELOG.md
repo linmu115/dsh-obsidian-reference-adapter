@@ -6,3 +6,5 @@
 - Preserve source registration, one-shot surface-targeted navigation,
   immediate local deletion, background Core cleanup, and logical-session
   resolution without changing the Bridge or Annotation Core public contracts.
+- Resolve RC1 Core and lifecycle development types from public full commits;
+  clean-checkout verification no longer depends on sibling worktrees.

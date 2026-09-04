@@ -1,7 +1,7 @@
 lockfileVersion: '9.0'
 
 settings:
-  autoInstallPeers: true
+  autoInstallPeers: false
   excludeLinksFromLockfile: false
 
 importers:
@@ -22,11 +22,11 @@ importers:
         specifier: ^24.3.0
         version: 24.13.3
       dsh-annotation-core:
-        specifier: link:../dsh-annotation-core
-        version: link:../dsh-annotation-core
+        specifier: git+https://github.com/linmu115/dsh-annotation-core.git#de5c6d3e4784cfcfa4cc90b4e8c29d75a36a2161
+        version: https://codeload.github.com/linmu115/dsh-annotation-core/tar.gz/de5c6d3e4784cfcfa4cc90b4e8c29d75a36a2161(@deepseek-ai/cordis@4.0.2)(@deepseek-ai/schemastery@3.18.2)
       dsh-obsidian-bridge-lifecycle:
-        specifier: link:../dsh-obsidian-bridge-lifecycle
-        version: link:../dsh-obsidian-bridge-lifecycle
+        specifier: git+https://github.com/linmu115/dsh-obsidian-bridge-lifecycle.git#bfe3582f52826b052cedf2ad7c5f24318fd64bdb
+        version: https://codeload.github.com/linmu115/dsh-obsidian-bridge-lifecycle/tar.gz/bfe3582f52826b052cedf2ad7c5f24318fd64bdb(@deepseek-ai/cordis@4.0.2)(@deepseek-ai/schemastery@3.18.2)
       tsdown:
         specifier: ^0.22.14
         version: 0.22.14(typescript@5.9.3)(unrun@0.3.1)
@@ -38,7 +38,7 @@ importers:
         version: 0.3.1
       vitest:
         specifier: ^4.1.11
-        version: 4.1.11(@types/node@24.13.3)(vite@8.2.2(@types/node@24.13.3))
+        version: 4.1.11(@types/node@24.13.3)
 
 packages:
 
@@ -373,6 +373,68 @@ packages:
     resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
     engines: {node: '>=8'}
 
+  dsh-annotation-core@https://codeload.github.com/linmu115/dsh-annotation-core/tar.gz/de5c6d3e4784cfcfa4cc90b4e8c29d75a36a2161:
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/linmu115/dsh-annotation-core/tar.gz/de5c6d3e4784cfcfa4cc90b4e8c29d75a36a2161}
+    version: 0.3.7
+    engines: {node: '>=20'}
+    peerDependencies:
+      '@deepseek-ai/cordis': '*'
+      '@deepseek-ai/dsh-agent': '*'
+      '@deepseek-ai/dsh-attachment': '*'
+      '@deepseek-ai/dsh-client-ui-conversation': '*'
+      '@deepseek-ai/dsh-client-ui-input-trigger': '*'
+      '@deepseek-ai/dsh-llm': '*'
+      '@deepseek-ai/dsh-session': '*'
+      '@deepseek-ai/dsh-storage-domain': '*'
+      '@deepseek-ai/dsh-system-prompt': '*'
+      '@deepseek-ai/dsh-typert-protocol': '*'
+      '@deepseek-ai/schemastery': '*'
+      react: '*'
+      react-dom: '*'
+    peerDependenciesMeta:
+      '@deepseek-ai/cordis':
+        optional: true
+      '@deepseek-ai/dsh-agent':
+        optional: true
+      '@deepseek-ai/dsh-attachment':
+        optional: true
+      '@deepseek-ai/dsh-client-ui-conversation':
+        optional: true
+      '@deepseek-ai/dsh-client-ui-input-trigger':
+        optional: true
+      '@deepseek-ai/dsh-llm':
+        optional: true
+      '@deepseek-ai/dsh-session':
+        optional: true
+      '@deepseek-ai/dsh-storage-domain':
+        optional: true
+      '@deepseek-ai/dsh-system-prompt':
+        optional: true
+      '@deepseek-ai/dsh-typert-protocol':
+        optional: true
+      '@deepseek-ai/schemastery':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
+  dsh-obsidian-bridge-lifecycle@https://codeload.github.com/linmu115/dsh-obsidian-bridge-lifecycle/tar.gz/bfe3582f52826b052cedf2ad7c5f24318fd64bdb:
+    resolution: {gitHosted: true, integrity: sha512-OePo8QiJMLPXn2OPNtiB6hoDQ9KZkNTRIrgzNEK7vt6bsmUtEsKEs7bdHITLmTq17vjxjz3gT/ZDt99E9FQ23A==, tarball: https://codeload.github.com/linmu115/dsh-obsidian-bridge-lifecycle/tar.gz/bfe3582f52826b052cedf2ad7c5f24318fd64bdb}
+    version: 0.3.1
+    engines: {node: '>=20'}
+    peerDependencies:
+      '@deepseek-ai/cordis': '*'
+      '@deepseek-ai/schemastery': '*'
+      dsh-obsidian-bridge-protocol: '*'
+    peerDependenciesMeta:
+      '@deepseek-ai/cordis':
+        optional: true
+      '@deepseek-ai/schemastery':
+        optional: true
+      dsh-obsidian-bridge-protocol:
+        optional: true
+
   dts-resolver@3.0.0:
     resolution: {integrity: sha512-1T1f+z+4tl9XD+m+0HBgWoL/nm0bOIffyWaUuUSBlFg/86IWvfx+wjNaO/ybU0AJzG9/Mi5hBUgGV6zCmWEN7Q==}
     engines: {node: ^22.18.0 || >=24.0.0}
@@ -701,7 +763,6 @@ packages:
       '@vitest/ui': 4.1.11
       happy-dom: '*'
       jsdom: '*'
-      vite: ^6.0.0 || ^7.0.0 || ^8.0.0
     peerDependenciesMeta:
       '@edge-runtime/vm':
         optional: true
@@ -956,6 +1017,18 @@ snapshots:
 
   detect-libc@2.1.2: {}
 
+  dsh-annotation-core@https://codeload.github.com/linmu115/dsh-annotation-core/tar.gz/de5c6d3e4784cfcfa4cc90b4e8c29d75a36a2161(@deepseek-ai/cordis@4.0.2)(@deepseek-ai/schemastery@3.18.2):
+    dependencies:
+      zod: 4.4.3
+    optionalDependencies:
+      '@deepseek-ai/cordis': 4.0.2
+      '@deepseek-ai/schemastery': 3.18.2
+
+  dsh-obsidian-bridge-lifecycle@https://codeload.github.com/linmu115/dsh-obsidian-bridge-lifecycle/tar.gz/bfe3582f52826b052cedf2ad7c5f24318fd64bdb(@deepseek-ai/cordis@4.0.2)(@deepseek-ai/schemastery@3.18.2):
+    optionalDependencies:
+      '@deepseek-ai/cordis': 4.0.2
+      '@deepseek-ai/schemastery': 3.18.2
+
   dts-resolver@3.0.0: {}
 
   empathic@2.0.1: {}
@@ -1164,7 +1237,7 @@ snapshots:
       '@types/node': 24.13.3
       fsevents: 2.3.3
 
-  vitest@4.1.11(@types/node@24.13.3)(vite@8.2.2(@types/node@24.13.3)):
+  vitest@4.1.11(@types/node@24.13.3):
     dependencies:
       '@vitest/expect': 4.1.11
       '@vitest/mocker': 4.1.11(vite@8.2.2(@types/node@24.13.3))
@@ -1189,7 +1262,18 @@ snapshots:
     optionalDependencies:
       '@types/node': 24.13.3
     transitivePeerDependencies:
+      - '@vitejs/devtools'
+      - esbuild
+      - jiti
+      - less
       - msw
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - terser
+      - tsx
+      - yaml
 
   why-is-node-running@2.3.0:
     dependencies:
