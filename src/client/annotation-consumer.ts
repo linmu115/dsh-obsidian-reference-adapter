@@ -17,6 +17,7 @@ export interface ObsidianAnnotationCore extends Pick<AnnotationCoreClient, "disc
 
 export interface ConsumeObsidianReferenceInput {
   capture: ObsidianReferenceCaptureV2;
+  signal?: AbortSignal;
   sessionId: string;
   profileId: string;
   annotationCore: ObsidianAnnotationCore | undefined;
@@ -34,6 +35,7 @@ export async function consumeObsidianReferenceCapture(input: ConsumeObsidianRefe
   referenceId: string;
   created: boolean;
 }> {
+  input.signal?.throwIfAborted();
   if (input.annotationCore === undefined) {
     throw new Error("DSH annotation core is unavailable; the Obsidian reference remains pending");
   }
@@ -41,8 +43,11 @@ export async function consumeObsidianReferenceCapture(input: ConsumeObsidianRefe
     operationId: input.capture.actionId,
     referenceId: input.capture.referenceId,
   });
+  if (input.signal?.aborted) {
+    input.signal.throwIfAborted();
+  }
   if (persisted.referenceId !== input.capture.referenceId) {
-    await input.annotationCore.discardPendingOperation(input.sessionId, input.capture.actionId).catch(() => undefined);
+    await input.annotationCore.discardPendingOperation(input.sessionId, input.capture.actionId, { notifySource: false });
     throw new BridgeHttpError(409, "idempotency-conflict", "Core returned a different reference identity");
   }
   const claim: ReferenceClaimV2 = {
@@ -55,10 +60,11 @@ export async function consumeObsidianReferenceCapture(input: ConsumeObsidianRefe
     ...(input.logicalTarget ?? {}),
   };
   try {
-    await input.bridge.claimReference(input.capture.actionId, claim);
+    if (input.signal === undefined) await input.bridge.claimReference(input.capture.actionId, claim);
+    else await input.bridge.claimReference(input.capture.actionId, claim, input.signal);
   } catch (error) {
-    if (error instanceof BridgeHttpError && error.code === "idempotency-conflict") {
-      await input.annotationCore.discardPendingOperation(input.sessionId, input.capture.actionId).catch(() => undefined);
+    if (error instanceof BridgeHttpError && (error.code === "idempotency-conflict" || error.status === 404 || error.status === 410)) {
+      await input.annotationCore.discardPendingOperation(input.sessionId, input.capture.actionId, { notifySource: false });
     }
     throw error;
   }

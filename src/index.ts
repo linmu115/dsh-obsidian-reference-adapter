@@ -17,7 +17,7 @@ export const name = "dsh-obsidian-reference-adapter";
 export const inject = ["annotationCoreHost", "obsidianBridgeLifecycle"] as const;
 export interface Config { bridgeOrigin: string; profileId: string; }
 export const Config = s.object({
-  bridgeOrigin: s.string().default("http://127.0.0.1:18473"),
+  bridgeOrigin: s.string().default(""),
   profileId: s.string().default("web"),
 });
 
@@ -44,7 +44,8 @@ export function apply(ctx: Context, config: Config): void {
           ),
         },
       );
-      return () => polling.stop();
+      const unregisterHealth = ctx.obsidianBridgeLifecycle.registerHealthSource?.("reference-deletions", polling);
+      return () => { polling.stop(); unregisterHealth?.(); };
     },
   );
   ctx.effect(() => async () => {

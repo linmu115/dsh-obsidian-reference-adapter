@@ -1,18 +1,31 @@
 {
   "name": "dsh-obsidian-reference-adapter",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Obsidian note reference adapter for dsh-annotation-core.",
   "type": "module",
   "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/types/index.d.ts",
   "exports": {
-    ".": { "types": "./lib/types/index.d.ts", "default": "./lib/index.js" },
-    "./client": { "types": "./lib/types/client/index.d.ts", "default": "./lib/client.js" },
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
     "./package.json": "./package.json"
   },
-  "files": ["lib", "CHANGELOG.md", "README.md", "LICENSE"],
-  "engines": { "node": ">=20" },
+  "files": [
+    "lib",
+    "CHANGELOG.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "build": "node -e \"fs.rmSync('lib',{recursive:true,force:true})\" && tsc -p tsconfig.build.json && tsdown --config-loader unrun --config tsdown.config.ts",
     "prepack": "pnpm build",
@@ -21,18 +34,32 @@
     "test": "vitest run",
     "check": "pnpm typecheck && pnpm test && pnpm pack --dry-run --json"
   },
-  "dependencies": { "zod": "4.4.3" },
+  "dependencies": {
+    "zod": "4.4.3"
+  },
   "peerDependencies": {
     "@deepseek-ai/cordis": "*",
     "@deepseek-ai/schemastery": "*",
     "dsh-annotation-core": "*",
-    "dsh-obsidian-bridge-lifecycle": "*"
+    "dsh-obsidian-bridge-lifecycle": "*",
+    "dsh-obsidian-bridge-protocol": "*"
   },
   "peerDependenciesMeta": {
-    "@deepseek-ai/cordis": { "optional": true },
-    "@deepseek-ai/schemastery": { "optional": true },
-    "dsh-annotation-core": { "optional": true },
-    "dsh-obsidian-bridge-lifecycle": { "optional": true }
+    "@deepseek-ai/cordis": {
+      "optional": true
+    },
+    "@deepseek-ai/schemastery": {
+      "optional": true
+    },
+    "dsh-annotation-core": {
+      "optional": true
+    },
+    "dsh-obsidian-bridge-lifecycle": {
+      "optional": true
+    },
+    "dsh-obsidian-bridge-protocol": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@deepseek-ai/cordis": "4.0.2",
@@ -43,17 +70,26 @@
     "tsdown": "^0.22.14",
     "typescript": "^5.9.3",
     "unrun": "^0.3.1",
-    "vitest": "^4.1.11"
+    "vitest": "^4.1.11",
+    "dsh-obsidian-bridge-protocol": "git+https://github.com/linmu115/dsh-obsidian-bridge-protocol.git#cfb069a5a09dacfb2e4f64a26036dfe514225132"
   },
   "dsh": {
     "client": {
       "platform": "web",
-      "inject": ["dsh-annotation-core", "dsh-obsidian-bridge-lifecycle"]
+      "inject": [
+        "dsh-annotation-core",
+        "dsh-obsidian-bridge-lifecycle"
+      ]
     }
   },
-  "dshKnowledge": { "annotationProtocolVersion": 2, "bridgeLifecycleProtocolVersion": 3 },
+  "dshKnowledge": {
+    "annotationProtocolVersion": 2,
+    "bridgeLifecycleProtocolVersion": 3
+  },
   "packageManager": "pnpm@11.19.0",
-  "publishConfig": { "access": "public" },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/linmu115/dsh-obsidian-reference-adapter.git"

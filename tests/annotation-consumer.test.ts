@@ -115,7 +115,14 @@ describe("Obsidian reference capture consumer", () => {
     await expect(consumeObsidianReferenceCapture({
       capture: capture(), sessionId: "session-loser", profileId: "web", annotationCore, bridge: bridgeClient,
     })).rejects.toMatchObject({ code: "idempotency-conflict" });
-    expect(annotationCore.discardPendingOperation).toHaveBeenCalledWith("session-loser", "action-1");
+    expect(annotationCore.discardPendingOperation).toHaveBeenCalledWith("session-loser", "action-1", { notifySource: false });
   });
 });
 
+
+it("stops before claim if Core persistence finishes after cancellation and retains its idempotent add", async () => {
+  const annotationCore = core(); const bridgeClient = bridge(); const abort = new AbortController();
+  annotationCore.addReference.mockImplementation(async () => { abort.abort(); return { setId: "set-1", referenceId: "reference-1", created: true }; });
+  await expect(consumeObsidianReferenceCapture({ capture: capture(), sessionId: "session-1", profileId: "web", annotationCore, bridge: bridgeClient, signal: abort.signal })).rejects.toMatchObject({ name: "AbortError" });
+  expect(bridgeClient.claimReference).not.toHaveBeenCalled(); expect(annotationCore.discardPendingOperation).not.toHaveBeenCalled();
+});
