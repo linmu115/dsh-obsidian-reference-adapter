@@ -1,6 +1,6 @@
 {
   "name": "dsh-obsidian-reference-adapter",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Obsidian note reference adapter for dsh-annotation-core.",
   "type": "module",
   "license": "MIT",

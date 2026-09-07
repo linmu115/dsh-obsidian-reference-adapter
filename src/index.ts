@@ -6,7 +6,7 @@ import type { ObsidianBridgeLifecycle } from "dsh-obsidian-bridge-lifecycle/api"
 import { createBridgeHttpClient, normalizeBridgeOrigin } from "./bridge/http-client.ts";
 import { startReferencePolling } from "./bridge/reference-polling.ts";
 import { createObsidianSourceAdapter } from "./host/obsidian-source-adapter.ts";
-import { createHostBridgeActionHandler } from "./host/reference-delete-actions.ts";
+import { createReferenceDeleteActionHandler } from "./bridge/reference-delete-actions.ts";
 
 type Context = CordisContext & {
   annotationCoreHost: AnnotationCoreHost;
@@ -35,7 +35,7 @@ export function apply(ctx: Context, config: Config): void {
       if (deleteReferenceLink === undefined) return;
       const polling = startReferencePolling(
         bridge,
-        createHostBridgeActionHandler({ deleteReferenceLink }, bridge, config.profileId),
+        createReferenceDeleteActionHandler({ deleteReferenceLink }, bridge, config.profileId),
         {
           onError: (error) => console.warn("[dsh-obsidian-reference-adapter] host Bridge unavailable", error),
           onActionError: (error, action) => console.warn(

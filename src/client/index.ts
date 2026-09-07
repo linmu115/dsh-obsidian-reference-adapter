@@ -4,6 +4,7 @@ import type { ObsidianBridgeLifecycle } from "dsh-obsidian-bridge-lifecycle/api"
 
 import { BridgeHttpError, bridgeSurfaceIdFromUrl, createBridgeHttpClient } from "../bridge/http-client.ts";
 import { startReferencePolling } from "../bridge/reference-polling.ts";
+import { createReferenceDeleteActionHandler } from "../bridge/reference-delete-actions.ts";
 import type { OpenNoteAction } from "../protocol.ts";
 import { consumeObsidianReferenceCapture } from "./annotation-consumer.ts";
 
@@ -40,6 +41,7 @@ export function apply(ctx: Context): void {
     clientId: `dsh-reference-web-${surfaceId ?? crypto.randomUUID()}`,
     ...(surfaceId === undefined ? {} : { surfaceId }),
   });
+  const applyReferenceDelete = createReferenceDeleteActionHandler(ctx.annotationCore, bridge, PROFILE_ID);
   const unregisterSource = ctx.annotationCore.registerSourceAdapter("obsidian-note", {
     async openSource(item) {
       if (item.sourceType !== "obsidian-note") throw new TypeError("Expected an Obsidian reference");
@@ -52,9 +54,7 @@ export function apply(ctx: Context): void {
       const polling = startReferencePolling(bridge, async (action, signal) => {
         signal.throwIfAborted();
         if (action.type === "reference-delete-request") {
-          if (action.profileId !== PROFILE_ID) return "ignored";
-          await ctx.annotationCore.deleteReferenceLink(action.sessionId, action.setId, action.referenceId);
-          return "handled";
+          return await applyReferenceDelete(action) ? "handled" : "ignored";
         }
         if (action.type === "reference-capture") {
           const sessionId = ctx.sessions.list.getSnapshot().current;
