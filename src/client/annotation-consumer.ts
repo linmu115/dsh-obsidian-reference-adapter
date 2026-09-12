@@ -23,6 +23,7 @@ export interface ConsumeObsidianReferenceInput {
   annotationCore: ObsidianAnnotationCore | undefined;
   bridge: Pick<BridgeHttpClient, "claimReference">;
   logicalTarget?: {
+    readonly dshInstanceId?: string;
     readonly logicalSessionId?: string;
     readonly logicalAnchorId?: string;
     readonly legacySessionId?: string;

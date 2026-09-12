@@ -1,3 +1,4 @@
+import { maintenanceLocationRequest, resolvedReferenceLocation } from "./bridge/maintenance-location.ts";
 import type { Context as CordisContext } from "@deepseek-ai/cordis";
 import s from "@deepseek-ai/schemastery";
 import type { AnnotationCoreHost } from "dsh-annotation-core/host-api";
@@ -23,7 +24,10 @@ export const Config = s.object({
 
 export function apply(ctx: Context, config: Config): void {
   const origin = normalizeBridgeOrigin(config.bridgeOrigin || ctx.obsidianBridgeLifecycle.bridgeOrigin);
-  const bridge = createBridgeHttpClient({ origin, clientId: `dsh-reference-host-${config.profileId}` });
+  const identity = ctx.obsidianBridgeLifecycle.runtimeIdentity;
+  const instance = identity?.dshInstanceId;
+  const instanceScope = instance === undefined ? {} : { dshInstanceId: instance };
+  const bridge = createBridgeHttpClient({ origin, ...instanceScope, clientId: `dsh-reference-host-${instance ?? crypto.randomUUID()}-${config.profileId}` });
   const unregisterSource = ctx.annotationCoreHost.registerSourceAdapter(
     "obsidian-note",
     createObsidianSourceAdapter(bridge),
@@ -35,7 +39,16 @@ export function apply(ctx: Context, config: Config): void {
       if (deleteReferenceLink === undefined) return;
       const polling = startReferencePolling(
         bridge,
-        createReferenceDeleteActionHandler({ deleteReferenceLink }, bridge, config.profileId),
+        createReferenceDeleteActionHandler({ deleteReferenceLink }, bridge, config.profileId, {
+          ...instanceScope,
+          resolveSession: async action => {
+            if (action.type !== "reference-delete-request") return undefined;
+            const resolver = ctx.get("maintenanceReferenceResolver" as never) as { resolve(input: unknown): Promise<unknown> } | undefined;
+            if (resolver === undefined) return action.logicalSessionId ? undefined : action.sessionId;
+            const resolved = resolvedReferenceLocation(await resolver.resolve(maintenanceLocationRequest(action)));
+            return resolved?.sessionId ?? (action.logicalSessionId ? undefined : action.sessionId);
+          },
+        }),
         {
           onError: (error) => console.warn("[dsh-obsidian-reference-adapter] host Bridge unavailable", error),
           onActionError: (error, action) => console.warn(

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.4-rc2.1 — DSH 0.1.5-rc.2 (2026-09-12)
+
+28 tests passed. Capture, navigation and deletion resolve logical/legacy IDs through the current instance Maintenance service. Delete the resolved native relation, then acknowledge the original source identity. Unresolved logical references remain pending; another explicit instance is ignored.
+
+
 ## 0.3.3 - 2026-09-07
 
 - Share exact-identity deletion confirmation between host and browser consumers before acknowledging the Bridge action. Pending tombstones and already-absent relations now drain the source delete outbox through the existing delete-commit endpoint.

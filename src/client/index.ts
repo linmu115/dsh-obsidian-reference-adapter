@@ -1,3 +1,4 @@
+import { resolveMaintenanceLocation } from "../bridge/maintenance-location.ts";
 import type { Context as CordisContext } from "@deepseek-ai/cordis";
 import type { AnnotationCoreClient } from "dsh-annotation-core/client-api";
 import type { ObsidianBridgeLifecycle } from "dsh-obsidian-bridge-lifecycle/api";
@@ -8,7 +9,6 @@ import { createReferenceDeleteActionHandler } from "../bridge/reference-delete-a
 import type { OpenNoteAction } from "../protocol.ts";
 import { consumeObsidianReferenceCapture } from "./annotation-consumer.ts";
 
-const PROFILE_ID = "web";
 
 type SessionOpeningCore = AnnotationCoreClient & {
   openAnnotationInSession?: (sessionId: string, setId: string, referenceId?: string) => Promise<boolean>;
@@ -36,12 +36,24 @@ function openSourceAction(notePath: string, blockId?: string): OpenNoteAction {
 
 export function apply(ctx: Context): void {
   const surfaceId = typeof location === "undefined" ? undefined : bridgeSurfaceIdFromUrl(location.href);
+  const identity = ctx.obsidianBridgeLifecycle.runtimeIdentity;
+  const profileId = identity?.profileId ?? "web";
+  const instance = identity?.dshInstanceId;
+  const instanceScope = instance === undefined ? {} : { dshInstanceId: instance };
   const bridge = createBridgeHttpClient({
+    ...instanceScope,
     origin: ctx.obsidianBridgeLifecycle.bridgeOrigin,
     clientId: `dsh-reference-web-${surfaceId ?? crypto.randomUUID()}`,
     ...(surfaceId === undefined ? {} : { surfaceId }),
   });
-  const applyReferenceDelete = createReferenceDeleteActionHandler(ctx.annotationCore, bridge, PROFILE_ID);
+  const applyReferenceDelete = createReferenceDeleteActionHandler(ctx.annotationCore, bridge, profileId, {
+    ...instanceScope,
+    resolveSession: async action => {
+      if (action.type !== "reference-delete-request") return undefined;
+      const resolved = await resolveMaintenanceLocation(action);
+      return resolved?.sessionId ?? (action.logicalSessionId ? undefined : action.sessionId);
+    },
+  });
   const unregisterSource = ctx.annotationCore.registerSourceAdapter("obsidian-note", {
     async openSource(item) {
       if (item.sourceType !== "obsidian-note") throw new TypeError("Expected an Obsidian reference");
@@ -59,11 +71,16 @@ export function apply(ctx: Context): void {
         if (action.type === "reference-capture") {
           const sessionId = ctx.sessions.list.getSnapshot().current;
           if (!sessionId) return "retry";
+          if (action.dshInstanceId !== undefined && action.dshInstanceId !== instance) return "ignored";
+          const target = await resolveMaintenanceLocation({ sessionId });
+          if (target !== undefined && target.sessionId !== sessionId) throw new Error("Capture resolver changed the receiving session identity");
           try { await consumeObsidianReferenceCapture({
             signal,
             capture: action,
             sessionId,
-            profileId: PROFILE_ID,
+            profileId,
+            logicalTarget: { ...instanceScope, legacySessionId: sessionId,
+              ...(target?.logicalSessionId ? { logicalSessionId: target.logicalSessionId } : {}) },
             annotationCore: ctx.annotationCore,
             bridge,
           }); } catch (error) {
@@ -74,9 +91,13 @@ export function apply(ctx: Context): void {
         }
         if (action.type === "deep-link" && action.setId !== undefined) {
           if (action.targetSurfaceId !== undefined && action.targetSurfaceId !== surfaceId) return "ignored";
-          ctx.sessions.open(action.sessionId);
+          if (action.dshInstanceId !== undefined && action.dshInstanceId !== instance) return "ignored";
+          const resolved = await resolveMaintenanceLocation(action);
+          if (action.logicalSessionId && resolved === undefined) return "retry";
+          const targetSessionId = resolved?.sessionId ?? action.sessionId;
+          await ctx.sessions.open(targetSessionId);
           if (typeof ctx.annotationCore.openAnnotationInSession === "function") {
-            return await ctx.annotationCore.openAnnotationInSession(action.sessionId, action.setId, action.referenceId) ? "handled" : "retry";
+            return await ctx.annotationCore.openAnnotationInSession(targetSessionId, action.setId, action.referenceId) ? "handled" : "retry";
           }
           ctx.annotationCore.openAnnotation(action.setId, action.referenceId);
           return "handled";

@@ -1,6 +1,6 @@
 import { createServer } from "node:http";
 import type { AddressInfo } from "node:net";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { createBridgeHttpClient } from "../src/bridge/http-client.ts";
 import type { ReferencePollingHandle } from "../src/bridge/reference-polling.ts";
@@ -42,6 +42,9 @@ async function sourceFixture() {
         capabilities: ["reference-capture-v2", "reference-refresh", "backlink-commit-v2", "reference-delete-v2", "sticker-backlink-delete-v1"],
       });
       return;
+    }
+    if (request.url === "/dsh-session-maintenance/api") {
+      respond(200, { referenceResolution: { status: "resolved", nativeSessionId: "session-1", logicalSessionId: "logical-session-1" } }); return;
     }
     if (request.headers.authorization !== "Bearer test-token") { respond(401, {}); return; }
     if (request.url?.startsWith("/v2/actions/pending?")) {
@@ -150,6 +153,9 @@ describe("host reference deletion", () => {
     const source = await sourceFixture();
     let polling: ReferencePollingHandle | undefined;
     const cleanup: Array<() => void | Promise<void>> = [];
+    const nativeFetch = globalThis.fetch.bind(globalThis);
+    const browserFetch = vi.spyOn(globalThis, "fetch").mockImplementation((url, init) =>
+      nativeFetch(typeof url === "string" && url.startsWith("/") ? `${source.origin}${url}` : url, init));
     const context = {
       annotationCore: {
         registerSourceAdapter: () => () => {},
@@ -174,7 +180,31 @@ describe("host reference deletion", () => {
       expect(polling!.getHealth()).toMatchObject({ state: "receiving", pendingCount: 0 });
     } finally {
       for (const dispose of cleanup) await dispose();
+      browserFetch.mockRestore();
       await source.close();
     }
   });
+});
+
+it("maps deletion to the current native session while acknowledging the original identity", async () => {
+  const deleteReferenceLink = vi.fn(async () => ({ deleted: true, scope: "sent" as const }));
+  const deleteCommittedReference = vi.fn(async () => {});
+  const resolveSession = vi.fn(async () => "session-rc2");
+  const handler = createReferenceDeleteActionHandler({ deleteReferenceLink }, { deleteCommittedReference }, "web", {
+    dshInstanceId: "rc2", resolveSession,
+  });
+  expect(await handler({ ...deletion, dshInstanceId: "other" })).toBe(false);
+  expect(resolveSession).not.toHaveBeenCalled(); expect(deleteReferenceLink).not.toHaveBeenCalled();
+  expect(await handler({ ...deletion, dshInstanceId: "rc2" })).toBe(true);
+  expect(deleteReferenceLink).toHaveBeenCalledExactlyOnceWith("session-rc2", deletion.setId, deletion.referenceId);
+  const { actionId: _actionId, requestedAt, type: _type, ...original } = deletion;
+  expect(deleteCommittedReference).toHaveBeenCalledExactlyOnceWith({ ...original, type: "reference-delete-commit", deletedAt: requestedAt, dshInstanceId: "rc2" });
+});
+
+it("does not delete or acknowledge an unresolved logical target", async () => {
+  const deleteReferenceLink = vi.fn(async () => ({ deleted: true, scope: "sent" as const }));
+  const deleteCommittedReference = vi.fn(async () => {});
+  const handler = createReferenceDeleteActionHandler({ deleteReferenceLink }, { deleteCommittedReference }, "web", { resolveSession: async () => undefined });
+  expect(await handler(deletion)).toBe(false);
+  expect(deleteReferenceLink).not.toHaveBeenCalled(); expect(deleteCommittedReference).not.toHaveBeenCalled();
 });
