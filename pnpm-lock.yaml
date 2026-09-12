@@ -25,8 +25,8 @@ importers:
         specifier: file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-annotation-core-0.3.11-rc2.2.tgz
         version: file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-annotation-core-0.3.11-rc2.2.tgz(@deepseek-ai/cordis@4.0.2)(@deepseek-ai/schemastery@3.18.2)
       dsh-obsidian-bridge-lifecycle:
-        specifier: file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-lifecycle-0.3.3-rc2.1.tgz
-        version: file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-lifecycle-0.3.3-rc2.1.tgz(@deepseek-ai/cordis@4.0.2)(@deepseek-ai/schemastery@3.18.2)(dsh-annotation-core@file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-annotation-core-0.3.11-rc2.2.tgz(@deepseek-ai/cordis@4.0.2)(@deepseek-ai/schemastery@3.18.2))(dsh-obsidian-bridge-protocol@file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-protocol-0.3.3-rc2.1.tgz)
+        specifier: file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-lifecycle-0.3.3-rc2.2.tgz
+        version: file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-lifecycle-0.3.3-rc2.2.tgz(@deepseek-ai/cordis@4.0.2)(@deepseek-ai/schemastery@3.18.2)(dsh-annotation-core@file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-annotation-core-0.3.11-rc2.2.tgz(@deepseek-ai/cordis@4.0.2)(@deepseek-ai/schemastery@3.18.2))(dsh-obsidian-bridge-protocol@file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-protocol-0.3.3-rc2.1.tgz)
       dsh-obsidian-bridge-protocol:
         specifier: file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-protocol-0.3.3-rc2.1.tgz
         version: file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-protocol-0.3.3-rc2.1.tgz
@@ -428,9 +428,9 @@ packages:
       react-dom:
         optional: true
 
-  dsh-obsidian-bridge-lifecycle@file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-lifecycle-0.3.3-rc2.1.tgz:
-    resolution: {integrity: sha512-2nAabMgRAudMGEnCtQLZY3dZ10fuOVh7YhJqAs80/uJMBjbFlqm7LXjkRZCj1qQ+6Mz1BSsui0raImQBirqJhQ==, tarball: file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-lifecycle-0.3.3-rc2.1.tgz}
-    version: 0.3.3-rc2.1
+  dsh-obsidian-bridge-lifecycle@file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-lifecycle-0.3.3-rc2.2.tgz:
+    resolution: {integrity: sha512-fX3myy4PDOaIMpnfBRA3DDqAPTnZKj+K7tYuOH+u94onwaXVNEni8jycwe73oo6uMSelRclSXB4iUW9Ja34izQ==, tarball: file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-lifecycle-0.3.3-rc2.2.tgz}
+    version: 0.3.3-rc2.2
     engines: {node: '>=20'}
     peerDependencies:
       '@deepseek-ai/cordis': '*'
@@ -1043,7 +1043,7 @@ snapshots:
       '@deepseek-ai/cordis': 4.0.2
       '@deepseek-ai/schemastery': 3.18.2
 
-  dsh-obsidian-bridge-lifecycle@file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-lifecycle-0.3.3-rc2.1.tgz(@deepseek-ai/cordis@4.0.2)(@deepseek-ai/schemastery@3.18.2)(dsh-annotation-core@file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-annotation-core-0.3.11-rc2.2.tgz(@deepseek-ai/cordis@4.0.2)(@deepseek-ai/schemastery@3.18.2))(dsh-obsidian-bridge-protocol@file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-protocol-0.3.3-rc2.1.tgz):
+  dsh-obsidian-bridge-lifecycle@file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-lifecycle-0.3.3-rc2.2.tgz(@deepseek-ai/cordis@4.0.2)(@deepseek-ai/schemastery@3.18.2)(dsh-annotation-core@file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-annotation-core-0.3.11-rc2.2.tgz(@deepseek-ai/cordis@4.0.2)(@deepseek-ai/schemastery@3.18.2))(dsh-obsidian-bridge-protocol@file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-protocol-0.3.3-rc2.1.tgz):
     dependencies:
       zod: 4.4.3
     optionalDependencies:

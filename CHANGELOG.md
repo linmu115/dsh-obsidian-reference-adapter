@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.4-rc2.2 — 2026-09-12
+
+Complete instance scope across durable capture, authenticated Core deletion, persisted reference ownership and Sticker backlink transport/matching. Legacy unscoped data remains unchanged. See deployment evidence for the tested combination.
+
+
 ## 0.3.4-rc2.1 — DSH 0.1.5-rc.2 (2026-09-12)
 
 28 tests passed. Capture, navigation and deletion resolve logical/legacy IDs through the current instance Maintenance service. Delete the resolved native relation, then acknowledge the original source identity. Unresolved logical references remain pending; another explicit instance is ignored.
