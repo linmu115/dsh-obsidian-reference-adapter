@@ -1,6 +1,6 @@
 {
   "name": "dsh-obsidian-reference-adapter",
-  "version": "0.3.4-rc2.4",
+  "version": "0.3.4-rc2.5",
   "description": "Obsidian note reference adapter for dsh-annotation-core.",
   "type": "module",
   "license": "MIT",
@@ -40,8 +40,8 @@
   "peerDependencies": {
     "@deepseek-ai/cordis": "*",
     "@deepseek-ai/schemastery": "*",
-    "dsh-annotation-core": "0.3.11-rc2.2 || 0.3.12-rc2.1 || 0.3.12-rc2.2",
-    "dsh-obsidian-bridge-lifecycle": "0.3.3-rc2.2 || 0.3.3-rc2.3 || 0.3.3-rc2.4",
+    "dsh-annotation-core": "0.3.11-rc2.2 || 0.3.12-rc2.1 || 0.3.12-rc2.2 || 0.3.12-rc2.3",
+    "dsh-obsidian-bridge-lifecycle": "0.3.3-rc2.2 || 0.3.3-rc2.3 || 0.3.3-rc2.4 || 0.3.3-rc2.5",
     "dsh-obsidian-bridge-protocol": "0.3.3-rc2.1"
   },
   "peerDependenciesMeta": {

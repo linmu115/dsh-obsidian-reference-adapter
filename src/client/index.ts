@@ -69,6 +69,9 @@ export function apply(ctx: Context): void {
           return await applyReferenceDelete(action) ? "handled" : "ignored";
         }
         if (action.type === "reference-capture") {
+          // The companion also checks its persisted Web Viewer identity. Do
+          // not mutate Core from a standalone page, including with old servers.
+          if (surfaceId === undefined) return "ignored";
           const sessionId = ctx.sessions.list.getSnapshot().current;
           if (!sessionId) return "retry";
           if (action.dshInstanceId !== undefined && action.dshInstanceId !== instance) return "ignored";
