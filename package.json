@@ -1,6 +1,6 @@
 {
   "name": "dsh-obsidian-reference-adapter",
-  "version": "0.3.4-rc2.2",
+  "version": "0.3.4-rc2.3",
   "description": "Obsidian note reference adapter for dsh-annotation-core.",
   "type": "module",
   "license": "MIT",
@@ -40,8 +40,8 @@
   "peerDependencies": {
     "@deepseek-ai/cordis": "*",
     "@deepseek-ai/schemastery": "*",
-    "dsh-annotation-core": "0.3.11-rc2.2",
-    "dsh-obsidian-bridge-lifecycle": "0.3.3-rc2.2",
+    "dsh-annotation-core": "0.3.11-rc2.2 || 0.3.12-rc2.1",
+    "dsh-obsidian-bridge-lifecycle": "0.3.3-rc2.2 || 0.3.3-rc2.3",
     "dsh-obsidian-bridge-protocol": "0.3.3-rc2.1"
   },
   "peerDependenciesMeta": {
@@ -65,8 +65,8 @@
     "@deepseek-ai/cordis": "4.0.2",
     "@deepseek-ai/schemastery": "3.18.2",
     "@types/node": "^24.3.0",
-    "dsh-annotation-core": "file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-annotation-core-0.3.11-rc2.2.tgz",
-    "dsh-obsidian-bridge-lifecycle": "file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-lifecycle-0.3.3-rc2.2.tgz",
+    "dsh-annotation-core": "file:../../../artifacts/session-context-graph-20260913/dsh-annotation-core-0.3.12-rc2.1.tgz",
+    "dsh-obsidian-bridge-lifecycle": "file:../../../artifacts/session-context-graph-20260913/dsh-obsidian-bridge-lifecycle-0.3.3-rc2.3.tgz",
     "tsdown": "^0.22.14",
     "typescript": "^5.9.3",
     "unrun": "^0.3.1",
