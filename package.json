@@ -1,6 +1,6 @@
 {
   "name": "dsh-obsidian-reference-adapter",
-  "version": "0.3.4-rc2.9",
+  "version": "0.3.4-rc2.10",
   "description": "Obsidian note reference adapter for dsh-annotation-core.",
   "type": "module",
   "license": "MIT",
@@ -41,7 +41,7 @@
     "@deepseek-ai/cordis": "*",
     "@deepseek-ai/schemastery": "*",
     "dsh-annotation-core": "0.3.11-rc2.2 || 0.3.12-rc2.1 || 0.3.12-rc2.2 || 0.3.12-rc2.3 || 0.3.12-rc2.4 || 0.3.12-rc2.5 || 0.3.12-rc2.6",
-    "dsh-obsidian-bridge-lifecycle": "0.3.3-rc2.2 || 0.3.3-rc2.3 || 0.3.3-rc2.4 || 0.3.3-rc2.5 || 0.3.3-rc2.6 || 0.3.3-rc2.7 || 0.3.3-rc2.8 || 0.3.3-rc2.9",
+    "dsh-obsidian-bridge-lifecycle": "0.3.3-rc2.2 || 0.3.3-rc2.3 || 0.3.3-rc2.4 || 0.3.3-rc2.5 || 0.3.3-rc2.6 || 0.3.3-rc2.7 || 0.3.3-rc2.8 || 0.3.3-rc2.9 || 0.3.3-rc2.10",
     "dsh-obsidian-bridge-protocol": "0.3.3-rc2.1"
   },
   "peerDependenciesMeta": {
@@ -66,7 +66,7 @@
     "@deepseek-ai/schemastery": "3.18.2",
     "@types/node": "^24.3.0",
     "dsh-annotation-core": "file:D:/AI/DeepSeekHarness-Plugin/artifacts/knowledge-network-rc2-20260914/dsh-annotation-core-0.3.12-rc2.6.tgz",
-    "dsh-obsidian-bridge-lifecycle": "file:D:/AI/DeepSeekHarness-Plugin/artifacts/knowledge-network-rc2-20260914/dsh-obsidian-bridge-lifecycle-0.3.3-rc2.9.tgz",
+    "dsh-obsidian-bridge-lifecycle": "file:D:/AI/DeepSeekHarness-Plugin/artifacts/knowledge-network-rc2-20260914/client-fix/dsh-obsidian-bridge-lifecycle-0.3.3-rc2.10.tgz",
     "tsdown": "^0.22.14",
     "typescript": "^5.9.3",
     "unrun": "^0.3.1",
