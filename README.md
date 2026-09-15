@@ -1,6 +1,8 @@
 # DSH Obsidian Reference Adapter
 
-当前版本 **0.3.4-rc2.14**，面向 **DSH 0.1.5-rc.2**。它把 Obsidian 笔记选段接入 Annotation Core 的 `obsidian-note` 引用类型，负责领取、来源核对、提交回链和双向删除。通常随 [Obsidian Session Reference Suite](https://github.com/linmu115/dsh-obsidian-session-reference-suite/blob/codex/rc2-session-context-graph/README.md) 一起安装。
+本补丁同步 **原生 Agent 上下文管理组合** 的兼容清单，接受 Annotation Core **0.3.12-rc2.11**；本插件原有职责保持不变，托管引擎不在本阶段范围内。见[组合兼容说明](docs/changes/2026-09-15-native-context-cohort.md)。
+
+当前版本 **0.3.4-rc2.15**，面向 **DSH 0.1.5-rc.2**。它把 Obsidian 笔记选段接入 Annotation Core 的 `obsidian-note` 引用类型，负责领取、来源核对、提交回链和双向删除。通常随 [Obsidian Session Reference Suite](https://github.com/linmu115/dsh-obsidian-session-reference-suite/blob/codex/rc2-session-context-graph/README.md) 一起安装。
 
 ## 使用流程
 
