@@ -1,6 +1,6 @@
 # DSH Obsidian Reference Adapter
 
-当前版本 **0.3.4-rc2.13**，面向 **DSH 0.1.5-rc.2**。它把 Obsidian 笔记选段接入 Annotation Core 的 `obsidian-note` 引用类型，负责领取、来源核对、提交回链和双向删除。通常随 [Obsidian Session Reference Suite](https://github.com/linmu115/dsh-obsidian-session-reference-suite/blob/codex/rc2-session-context-graph/README.md) 一起安装。
+当前版本 **0.3.4-rc2.14**，面向 **DSH 0.1.5-rc.2**。它把 Obsidian 笔记选段接入 Annotation Core 的 `obsidian-note` 引用类型，负责领取、来源核对、提交回链和双向删除。通常随 [Obsidian Session Reference Suite](https://github.com/linmu115/dsh-obsidian-session-reference-suite/blob/codex/rc2-session-context-graph/README.md) 一起安装。
 
 ## 使用流程
 
@@ -68,3 +68,5 @@ pnpm pack --pack-destination .artifacts
 `test` / `pack` 会先构建。公开源码与本地构件的可用性是两回事；此处不假定当前候选版已发布到 npm 或 GitHub Releases。
 
 实现入口见 [Host 来源适配器](src/host/obsidian-source-adapter.ts)、[浏览器领取事务](src/client/annotation-consumer.ts)及[插件入口](src/index.ts)。版本变化见 [CHANGELOG](CHANGELOG.md)和[当前兼容说明](docs/changes/2026-09-15-graph-reference-lifecycle-cohort.md)。
+
+本次配套更新支持 Maintenance 的轻量引用目录，详见[兼容变更说明](docs/changes/2026-09-15-maintenance-reference-directory.md)。
