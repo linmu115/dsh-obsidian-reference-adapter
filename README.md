@@ -1,3 +1,5 @@
+> Phase 1 integration (2026-09-18): `dsh-obsidian-bridge-lifecycle@0.4.0-rc2.1` now owns the existing Obsidian reference channel, shared action queue, and connection health UI. The supported Suite runtime is Core + Bridge + Sticker. `dsh-obsidian-reference-adapter@0.3.5-rc2.1` is a guarded compatibility shell and must not be configured as an independent receiver. See `docs/changes/2026-09-18-bridge-consolidation.md` for ownership and validation.
+
 # DSH Obsidian Reference Adapter
 
 本补丁配套 Annotation Core **0.3.12-rc2.12**，跨会话引用选择器使用 DSH 会话栏的可读标题。见[组合兼容说明](docs/changes/2026-09-15-picker-title-cohort.md)。

@@ -1,3 +1,9 @@
+## 0.3.5-rc2.1 — 2026-09-18
+
+Replace the independent receiver with an explicit capability-checked compatibility shell for the integrated Bridge.
+
+See [integration report](docs/changes/2026-09-18-bridge-consolidation.md).
+
 # Changelog
 
 ## 0.3.4-rc2.3 — 2026-09-13

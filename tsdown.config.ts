@@ -1,6 +1,6 @@
 import type { UserConfig } from "tsdown";
 
-const bundled = ["dsh-obsidian-bridge-protocol/data", "dsh-obsidian-bridge-lifecycle/transport", "dsh-annotation-core/protocol", "zod"];
+const bundled: string[] = [];
 
 export default [
   {

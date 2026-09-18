@@ -5,7 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 importers:
-
   .:
     dependencies:
       zod:
@@ -22,11 +21,11 @@ importers:
         specifier: ^24.3.0
         version: 24.13.3
       dsh-annotation-core:
-        specifier: file:D:/AI/DeepSeekHarness-Plugin/artifacts/session-main-graph-20260914/dsh-annotation-core-0.3.12-rc2.8.tgz
-        version: file:../../../artifacts/session-main-graph-20260914/dsh-annotation-core-0.3.12-rc2.8.tgz(@deepseek-ai/cordis@4.0.2)(@deepseek-ai/schemastery@3.18.2)
+        specifier: link:../dsh-annotation-core
+        version: link:../dsh-annotation-core
       dsh-obsidian-bridge-lifecycle:
-        specifier: file:D:/AI/DeepSeekHarness-Plugin/artifacts/session-main-graph-20260914/dsh-obsidian-bridge-lifecycle-0.3.3-rc2.12.tgz
-        version: file:../../../artifacts/session-main-graph-20260914/dsh-obsidian-bridge-lifecycle-0.3.3-rc2.12.tgz(@deepseek-ai/cordis@4.0.2)(@deepseek-ai/schemastery@3.18.2)(dsh-annotation-core@file:../../../artifacts/session-main-graph-20260914/dsh-annotation-core-0.3.12-rc2.8.tgz(@deepseek-ai/cordis@4.0.2)(@deepseek-ai/schemastery@3.18.2))(dsh-obsidian-bridge-protocol@file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-protocol-0.3.3-rc2.1.tgz)
+        specifier: link:../dsh-obsidian-bridge-lifecycle
+        version: link:../dsh-obsidian-bridge-lifecycle
       dsh-obsidian-bridge-protocol:
         specifier: file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-protocol-0.3.3-rc2.1.tgz
         version: file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-protocol-0.3.3-rc2.1.tgz
