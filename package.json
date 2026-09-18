@@ -1,6 +1,6 @@
 {
   "name": "dsh-obsidian-reference-adapter",
-  "version": "0.3.5-rc2.1",
+  "version": "0.3.5-rc2.2",
   "description": "Obsidian note reference adapter for dsh-annotation-core.",
   "type": "module",
   "license": "MIT",
@@ -43,7 +43,7 @@
     "@deepseek-ai/schemastery": "*",
     "dsh-annotation-core": "0.3.11-rc2.2 || 0.3.12-rc2.1 || 0.3.12-rc2.2 || 0.3.12-rc2.3 || 0.3.12-rc2.4 || 0.3.12-rc2.5 || 0.3.12-rc2.6 || 0.3.12-rc2.7 || 0.3.12-rc2.8 || 0.3.12-rc2.9 || 0.3.12-rc2.10 || 0.3.12-rc2.11 || 0.3.12-rc2.12 || 0.3.12-rc2.19",
     "dsh-obsidian-bridge-lifecycle": "^0.4.0-rc2.1",
-    "dsh-obsidian-bridge-protocol": "0.3.3-rc2.1"
+    "dsh-obsidian-bridge-protocol": "0.3.3-rc2.1 || 0.4.0-rc2.1"
   },
   "peerDependenciesMeta": {
     "@deepseek-ai/cordis": {
@@ -72,7 +72,7 @@
     "typescript": "^5.9.3",
     "unrun": "^0.3.1",
     "vitest": "^4.1.11",
-    "dsh-obsidian-bridge-protocol": "file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-protocol-0.3.3-rc2.1.tgz"
+    "dsh-obsidian-bridge-protocol": "link:../../rc2-adapt-20260912/dsh-obsidian-bridge-protocol"
   },
   "dsh": {
     "client": {

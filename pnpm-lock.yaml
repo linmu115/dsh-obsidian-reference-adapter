@@ -27,8 +27,8 @@ importers:
         specifier: link:../dsh-obsidian-bridge-lifecycle
         version: link:../dsh-obsidian-bridge-lifecycle
       dsh-obsidian-bridge-protocol:
-        specifier: file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-protocol-0.3.3-rc2.1.tgz
-        version: file:C:/Users/19717/OneDrive/文档/ChatGPT/dsh/.artifacts/rc2-profile-candidate/dsh-obsidian-bridge-protocol-0.3.3-rc2.1.tgz
+        specifier: link:../../rc2-adapt-20260912/dsh-obsidian-bridge-protocol
+        version: link:../../rc2-adapt-20260912/dsh-obsidian-bridge-protocol
       tsdown:
         specifier: ^0.22.14
         version: 0.22.14(typescript@5.9.3)(unrun@0.3.1)

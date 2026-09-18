@@ -1,5 +1,9 @@
 ## 0.3.5-rc2.1 — 2026-09-18
 
+## 0.3.5-rc2.2 — 2026-09-18
+
+- Accept the Protocol 0.4.0 binding cohort while retaining the integrated Bridge capability guard.
+
 Replace the independent receiver with an explicit capability-checked compatibility shell for the integrated Bridge.
 
 See [integration report](docs/changes/2026-09-18-bridge-consolidation.md).
