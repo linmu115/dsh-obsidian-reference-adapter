@@ -1,3 +1,8 @@
+> **停止维护 / Archived — 2026-09-19**
+> 本仓库已被统一桥项目 [dsh-obsidian-bridge](https://github.com/linmu115/dsh-obsidian-bridge) 替代，不再发布更新或接受新功能。
+> 新问题和改动请转到新仓库。历史源码、许可证和以下旧版说明保留供回查，旧版安装说明不再作为当前推荐。
+> Obsidian 侧插件 [obsidian-deepharness-bridge](https://github.com/linmu115/obsidian-deepharness-bridge) 继续维护。Protocol 源码转到新仓库 `vendor/protocol`；Suite 仅保留历史组合规格。
+
 > Phase 1 integration (2026-09-18): `dsh-obsidian-bridge-lifecycle@0.4.0-rc2.1` now owns the existing Obsidian reference channel, shared action queue, and connection health UI. The supported Suite runtime is Core + Bridge + Sticker. `dsh-obsidian-reference-adapter@0.3.5-rc2.1` is a guarded compatibility shell and must not be configured as an independent receiver. See `docs/changes/2026-09-18-bridge-consolidation.md` for ownership and validation.
 
 # DSH Obsidian Reference Adapter
